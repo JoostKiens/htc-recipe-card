@@ -2,7 +2,6 @@ import React from 'react'
 import { Image, Text, Group } from 'react-konva'
 import useImage from 'use-image'
 import { width, height, padding } from './config'
-import createPersistedState from 'use-persisted-state'
 import { Item } from './Item'
 import benz1 from  './images/benz1.png'
 import benz2 from './images/benz2.png'
@@ -17,9 +16,8 @@ const initialState = {
   benz: benz1
 }
 
-const usePersistedState = createPersistedState('formState')
 export function CoverItem({ image, setAppState }) {
-  const [formState, setFormState] = usePersistedState(initialState)
+  const [formState, setFormState] = React.useState(initialState)
   const [benzImg] = useImage(formState.benz)
   const fileName = `front`
 
@@ -65,11 +63,12 @@ function Title({ text, flipped }) {
     align: 'center',
     lineHeight: 1.1,
     width: titleWidth,
-    x: width / 2,
+    verticalAlign: 'middle',
+    x: width / 4,
     y: padding * 2,
     rotation: flipped ? -10 : 10,
-    offset: { x: titleWidth / 2, y: 0 },
-    height: 200
+    // offset: { x: titleWidth / 2, y: 0 },
+    // height: 200
   }
 
   return (

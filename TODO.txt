@@ -1,0 +1,8 @@
+- Multiline title
+- Non square images
+
+// Need extra UI, try to avoid or automate
+- Font-size title
+- Flip image
+
+V Prevent enter submit form

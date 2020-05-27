@@ -2,14 +2,12 @@ import React from 'react'
 import { useStrictMode } from 'react-konva'
 import './App.css'
 import useImage from 'use-image'
-import createPersistedState from 'use-persisted-state'
 import { CoverItem } from './CoverItem'
 import { ContentItem } from './ContentItem'
 import times from 'lodash/times'
 import src from './test.jpg'
 
 useStrictMode(true)
-const useAppState = createPersistedState('appState')
 const initialState = {
   ingredientItemsCount: 1,
   methodItemsCount: 1,
@@ -17,7 +15,7 @@ const initialState = {
 }
 
 function App() {
-  const [appState, setAppState] = useAppState(initialState)
+  const [appState, setAppState] = React.useState(initialState)
   const [image] = useImage(appState.image)
 
   return (
