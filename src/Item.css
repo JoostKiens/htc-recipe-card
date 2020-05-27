@@ -1,0 +1,43 @@
+.Item,
+.Item-stage {
+  width: 100%;
+}
+
+.konvajs-content {
+  width: 100% !important;
+  padding-bottom: 100%;
+  height: 0 !important;
+}
+
+.konvajs-content > canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.DownloadButton {
+  max-width: 200px;
+  display: block;
+  width: 100%;
+  background-color: #121212;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: inherit;
+  font-family: inherit;
+  border: 0;
+  min-height: 48px;
+  font-weight: bold;
+}
+
+.Actions {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.Actions:not(.Actions--cover) {
+  display: flex;
+  justify-content: space-between;
+}
