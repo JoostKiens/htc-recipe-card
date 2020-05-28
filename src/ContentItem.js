@@ -9,8 +9,8 @@ const contentStyles = {
   fontFamily: 'Helvetica',
   fontSize: 24,
   lineHeight: 1.2,
-  width: width - padding * 2,
-  height: height - padding * 2 - 100,
+  width: width - padding * 4,
+  height: height - padding * 4 - 100,
   y: padding + 100,
   x: padding
 }
@@ -40,8 +40,10 @@ export const ContentItem = function ContentItem({
         {...{ image, fileName, buttons }}
       >
         <Content
-          width={width - padding * 2} height={height - padding * 2}
-          x={padding} y={padding}
+          width={width - padding * 2}
+          height={height - padding * 2}
+          x={padding}
+          y={padding}
           content={content}
           {...{ title }}
         />
@@ -88,8 +90,8 @@ function Form({ setContent, content, scale }) {
       style={{
         top: (top + padding) * scale,
         left: (left + padding) * scale,
-        width: (width - padding * 2) * scale,
-        height: (height - padding * 2) * scale
+        width: width * scale,
+        height: height * scale
       }}
       className='ContentItem-form'
       onSubmit={e => {e.preventDefault()}}
