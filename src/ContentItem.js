@@ -6,7 +6,7 @@ import { useElementSize } from './useElementSize'
 import './ContentItem.css'
 
 const contentStyles = {
-  fontFamily: 'Helvetica',
+  fontFamily: 'roboto',
   fontSize: 24,
   lineHeight: 1.2,
   width: width - padding * 4,
