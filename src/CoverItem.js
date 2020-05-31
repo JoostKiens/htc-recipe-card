@@ -67,8 +67,6 @@ function Title({ text, flipped }) {
     x: width / 4,
     y: padding * 2,
     rotation: flipped ? -10 : 10,
-    // offset: { x: titleWidth / 2, y: 0 },
-    // height: 200
   }
 
   return (
@@ -94,7 +92,9 @@ function FormFront({ formState, setFormState, setAppState }) {
       return () => { reader.removeEventListener('load', setImage) }
 
       function setImage() {
+        // We want to write image to canvas, then extract it
         // check if still mounted
+
         setAppState(x => ({...x, image: reader.result }))
       }
     },
