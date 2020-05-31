@@ -3,6 +3,7 @@ import { Text, Rect, Group } from 'react-konva'
 import { Item } from './Item'
 import { width, height, padding } from './config'
 import { useElementSize } from './useElementSize'
+import createPersistedState from 'use-persisted-state'
 import './ContentItem.css'
 
 const contentStyles = {
@@ -18,8 +19,9 @@ const contentStyles = {
 export const ContentItem = function ContentItem({
   index, image, stateKey, itemCount, title, add, remove,
 }) {
+  const contentState = createPersistedState(`${stateKey}-${index}`)
   const { size: { width: contentWidth }, ref: contentRef } = useElementSize()
-  const [content, setContent] = React.useState('')
+  const [content, setContent] = contentState('')
   const fileName = `${title}-${index + 1}`
 
   const scale = contentWidth / 640
