@@ -7,20 +7,27 @@ import { ContentItem } from './ContentItem'
 import { StageWithImage } from './StageWithImage'
 import times from 'lodash/times'
 import src from './test.jpg'
-import createPersistedState from 'use-persisted-state'
+//import createPersistedState from 'use-persisted-state'
 
 useStrictMode(true)
-const useAppState = createPersistedState('appState')
+//const usePersistedAppState = createPersistedState('appState')
 const initialState = {
   ingredientItemsCount: 1,
   methodItemsCount: 1,
   image: null
 }
 
+function useAppState(initialState) {
+  return React.useState(initialState)
+  //return usePersistedAppState(initialState)
+}
+
 function App() {
   const [appState, setAppState] = useAppState(initialState)
   const [uploadedImage, setUploadedImage] = React.useState(appState.image || src)
   const [image] = useImage(appState.image)
+
+  console.log('render')
 
   return (
     <div className="App">
@@ -60,9 +67,12 @@ function App() {
 function ImageResizer({ uploadedImage, setAppState }) {
   const [image] = useImage(uploadedImage)
   const stageRef = React.useRef()
+
   React.useEffect(
-    () => { setAppState(x => ({ ...x, image: stageRef.current.toDataURL({ pixelRatio: 1 }) })) },
-    [image, setAppState]
+    () => {
+      setAppState(x => ({ ...x, image: stageRef.current.toDataURL({ pixelRatio: 1 }) }))
+    },
+    [image, setAppState, uploadedImage]
   )
 
   return (

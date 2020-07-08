@@ -21,17 +21,16 @@ function DownloadButton({ stageRef, fileName, children }) {
   return <button className='DownloadButton' {...{ onClick, children }} />
 
   function onClick() {
-    const dataURL = stageRef.current.toDataURL({ pixelRatio: 1 })
-    downloadURI(dataURL, `${fileName}.png`)
+    downloadURI(stageRef.current.toDataURL(), `${fileName}.png`)
   }
 }
 
-// function from https://stackoverflow.com/a/15832662/512042
+// https://stackoverflow.com/a/15832662/512042
 function downloadURI(uri, name) {
-  var link = document.createElement('a');
-  link.download = name;
-  link.href = uri;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  var link = document.createElement('a')
+  link.download = name
+  link.href = uri
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
 }

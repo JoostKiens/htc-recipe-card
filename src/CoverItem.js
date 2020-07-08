@@ -153,7 +153,7 @@ function FormFront({ formState, setFormState, setUploadedImage }) {
 
       <label className='Form-fileInput'>
         <span>Upload a picture</span>
-        <input type='file' onChange={onImageChange} />
+        <input type='file' onChange={onImageChange} accept='.jpg,.jpeg,.png' />
       </label>
     </form>
   )
