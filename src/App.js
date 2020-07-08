@@ -7,23 +7,17 @@ import { ContentItem } from './ContentItem'
 import { StageWithImage } from './StageWithImage'
 import times from 'lodash/times'
 import src from './test.jpg'
-//import createPersistedState from 'use-persisted-state'
 
 useStrictMode(true)
-//const usePersistedAppState = createPersistedState('appState')
+
 const initialState = {
   ingredientItemsCount: 1,
   methodItemsCount: 1,
   image: null
 }
 
-function useAppState(initialState) {
-  return React.useState(initialState)
-  //return usePersistedAppState(initialState)
-}
-
 function App() {
-  const [appState, setAppState] = useAppState(initialState)
+  const [appState, setAppState] = React.useState(initialState)
   const [uploadedImage, setUploadedImage] = React.useState(appState.image || src)
   const [image] = useImage(appState.image)
 

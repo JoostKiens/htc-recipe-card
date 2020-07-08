@@ -3,22 +3,20 @@ import { Image, Text, Group } from 'react-konva'
 import useImage from 'use-image'
 import { width, height, padding } from './config'
 import { Item } from './Item'
-import createPersistedState from 'use-persisted-state'
 import benz1 from  './images/benz1.png'
 import benz2 from './images/benz2.png'
 import none from './images/none.png'
 import './CoverItem.css'
 
-const coverState = createPersistedState('coverState')
 const benzes = [benz1, benz2]
 const initialState = {
-  flipped: false, // Move to CoverItem
+  flipped: false,
   title: 'Enter title here',
   benz: benz1
 }
 
 export function CoverItem({ image, setUploadedImage }) {
-  const [formState, setFormState] = coverState(initialState)
+  const [formState, setFormState] = React.useState(initialState)
   const [benzImg] = useImage(formState.benz)
   const fileName = `front`
 
