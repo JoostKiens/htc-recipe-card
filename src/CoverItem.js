@@ -15,14 +15,14 @@ const initialState = {
   benz: benz1
 }
 
-export function CoverItem({ image, setUploadedImage }) {
+export function CoverItem({ image, setAppState }) {
   const [formState, setFormState] = React.useState(initialState)
   const [benzImg] = useImage(formState.benz)
   const fileName = `front`
 
   return (
     <Item
-      form={<FormFront {...{ formState, setFormState, setUploadedImage }} />}
+      form={<FormFront {...{ formState, setFormState, setAppState }} />}
       isCover
       {...{ image, fileName }}
     >
@@ -82,17 +82,20 @@ function Title({ text, flipped }) {
   )
 }
 
-function FormFront({ formState, setFormState, setUploadedImage }) {
+function FormFront({ formState, setFormState, setAppState }) {
   const readerRef = React.useRef(new FileReader())
+
   React.useEffect(
     () => {
       const reader = readerRef.current
       reader.addEventListener('load', setImage, false)
       return () => { reader.removeEventListener('load', setImage) }
 
-      function setImage() { setUploadedImage(reader.result) }
+      function setImage() {
+        setAppState(x => ({ ...x, imageSrc: reader.result }))
+      }
     },
-    [setUploadedImage]
+    [setAppState]
   )
 
   return (
@@ -149,7 +152,7 @@ function FormFront({ formState, setFormState, setUploadedImage }) {
         </label>
       </div>
 
-      <label className='Form-fileInput'>
+      <label className={`Form-fileInput`}>
         <span>Upload a picture</span>
         <input type='file' onChange={onImageChange} accept='.jpg,.jpeg,.png' />
       </label>
